@@ -10,5 +10,4 @@
 #import "SWTableViewCell.h"
 
 @interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
-
 @end

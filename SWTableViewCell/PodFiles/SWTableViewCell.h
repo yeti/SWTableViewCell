@@ -41,7 +41,15 @@ typedef enum {
 @property (nonatomic, strong) SWCellScrollView *cellScrollView;
 @property (nonatomic, weak) UITableView *containingTableView;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons;
+/* Experiment */
+@property (nonatomic, weak) UIViewController *containingView;
+
+
+//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons AndContainingView:(UIViewController*)containingView;
+
+/* End Experiment */
 
 - (void)setCellHeight:(CGFloat)height;
 - (void)setBackgroundColor:(UIColor *)backgroundColor;

@@ -46,14 +46,22 @@
 
 - (CGFloat)calculateUtilityButtonWidth
 {
-    CGFloat buttonWidth = kUtilityButtonWidthDefault;
+  /* Add in this bad boy to fill up whole screen */
+  CGFloat buttonWidth;
+  if ([_utilityButtons count] > 1) {
+    buttonWidth = kUtilityButtonWidthDefault;
     if (buttonWidth * _utilityButtons.count > kUtilityButtonsWidthMax)
     {
         CGFloat buffer = (buttonWidth * _utilityButtons.count) - kUtilityButtonsWidthMax;
         buttonWidth -= (buffer / _utilityButtons.count);
     }
+  } else {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    buttonWidth = screenRect.size.width;
+  }
     return buttonWidth;
 }
+
 
 - (CGFloat)utilityButtonsWidth
 {

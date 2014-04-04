@@ -38,20 +38,39 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 
 #pragma mark Initializers
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons
+//- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons
+//{
+//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+//    if (self)
+//    {
+//        self.height = containingTableView.rowHeight;
+//        [self initializer];
+//        self.containingTableView = containingTableView;
+//        self.rightUtilityButtons = rightUtilityButtons;
+//        self.leftUtilityButtons = leftUtilityButtons;
+//    }
+//    
+//    return self;
+//}
+
+/* Experiment */
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons AndContainingView:(UIViewController*)containingView
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self)
-    {
-        self.height = containingTableView.rowHeight;
-        [self initializer];
-        self.containingTableView = containingTableView;
-        self.rightUtilityButtons = rightUtilityButtons;
-        self.leftUtilityButtons = leftUtilityButtons;
-    }
-    
-    return self;
+  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  if (self)
+  {
+    self.height = containingTableView.rowHeight;
+    [self initializer];
+    self.containingTableView = containingTableView;
+    self.rightUtilityButtons = rightUtilityButtons;
+    self.leftUtilityButtons = leftUtilityButtons;
+    self.containingView = containingView;
+  }
+  
+  return self;
 }
+
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -220,9 +239,15 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 - (void)scrollViewPressed:(id)sender
 {
     SWLongPressGestureRecognizer *longPressGestureRecognizer = (SWLongPressGestureRecognizer *)sender;
+  
+  longPressGestureRecognizer.minimumPressDuration = 2.0;
+  
     
     if (longPressGestureRecognizer.state == UIGestureRecognizerStateEnded)
     {
+
+      NSLog(@"Touched this bad boy");
+
         // Gesture recognizer ended without failing so we select the cell
         [self selectCell];
         
@@ -268,13 +293,18 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 {
     if (_cellState == kCellStateCenter)
     {
-        if ([self.containingTableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)])
-        {
-            NSIndexPath *cellIndexPath = [self.containingTableView indexPathForCell:self];
-            [self.containingTableView selectRowAtIndexPath:cellIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-            [self.containingTableView.delegate tableView:self.containingTableView didSelectRowAtIndexPath:cellIndexPath];
-            [self.containingTableView deselectRowAtIndexPath:cellIndexPath animated:NO];
-        }
+      
+      if ([self.containingView  respondsToSelector:@selector(flipIt)]) {
+        [self.containingView performSelector:@selector(flipIt)];
+      }
+//      if ([self.containingTableView.delegate respondsToSelector:@selector(flipIt:)])
+//        {
+          //[self.containingTableView.delegate performSelector:@selector(flipIt)];
+//            NSIndexPath *cellIndexPath = [self.containingTableView indexPathForCell:self];
+//            [self.containingTableView selectRowAtIndexPath:cellIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+//            [self.containingTableView.delegate tableView:self.containingTableView didSelectRowAtIndexPath:cellIndexPath];
+//            [self.containingTableView deselectRowAtIndexPath:cellIndexPath animated:NO];
+//        }
     }
 }
 
@@ -601,7 +631,13 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self setCellState];
-    
+  
+  if (_cellState == kCellStateLeft && [self.containingView respondsToSelector:@selector(upvote)]) {
+    [self.containingView performSelector:@selector(upvote)];
+  } else if (_cellState == kCellStateRight && [self.containingView respondsToSelector:@selector(downvote)]) {
+    [self.containingView performSelector:@selector(downvote)];
+  }
+  
     self.tapGestureRecognizer.enabled = YES;
 }
 

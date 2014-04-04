@@ -10,6 +10,8 @@
 #define SWTableViewCell_Constants_h
 
 #define kUtilityButtonsWidthMax 260
+#define kUtilityButtonsWidthForOne 320
+
 #define kUtilityButtonWidthDefault 90
 #define kSectionIndexWidth 15
 #define kLongPressMinimumDuration 0.16f

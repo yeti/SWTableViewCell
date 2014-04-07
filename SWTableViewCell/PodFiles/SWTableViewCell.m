@@ -127,7 +127,7 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
     SWLongPressGestureRecognizer *longPressGestureRecognizer = [[SWLongPressGestureRecognizer alloc] initWithTarget:self
                                                                                                              action:@selector(scrollViewPressed:)];
     longPressGestureRecognizer.cancelsTouchesInView = NO;
-    longPressGestureRecognizer.minimumPressDuration = kLongPressMinimumDuration;
+    longPressGestureRecognizer.minimumPressDuration = 4.0;
     longPressGestureRecognizer.delegate = self;
     [cellScrollView addGestureRecognizer:longPressGestureRecognizer];
     
@@ -240,10 +240,7 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 {
     SWLongPressGestureRecognizer *longPressGestureRecognizer = (SWLongPressGestureRecognizer *)sender;
   
-  longPressGestureRecognizer.minimumPressDuration = 2.0;
-  
-    
-    if (longPressGestureRecognizer.state == UIGestureRecognizerStateEnded)
+    if (longPressGestureRecognizer.state == UIGestureRecognizerStateBegan)
     {
 
         // Gesture recognizer ended without failing so we select the cell

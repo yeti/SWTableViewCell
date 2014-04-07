@@ -294,7 +294,7 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
     {
       
       if ([self  respondsToSelector:@selector(flip:)]) {
-        [self performSelector:@selector(flip:)];
+        [self performSelector:@selector(flip:) withObject: nil];
       }
 //      if ([self.containingTableView.delegate respondsToSelector:@selector(flipIt:)])
 //        {

@@ -263,6 +263,8 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
         {
             [self highlightCell];
         }
+      [self selectCell];
+
     }
 }
 

@@ -56,6 +56,6 @@ typedef enum {
 - (void)hideUtilityButtonsAnimated:(BOOL)animated;
 - (void)setAppearanceWithBlock:(void (^) ())appearanceBlock force:(BOOL)force;
 
-- (void)flip;
+- (void)flip:(id)sender;
 
 @end

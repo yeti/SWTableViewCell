@@ -249,7 +249,7 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
         // Set back to deselected
         [self setSelected:NO];
     }
-    else
+    else if (!longPressGestureRecognizer.state == UIGestureRecognizerStateEnded)
     {
         // Handle the highlighting of the cell
         if (self.isHighlighted)

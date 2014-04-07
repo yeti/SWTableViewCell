@@ -36,6 +36,10 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 
 @implementation SWTableViewCell
 
+- (void)flip:(id)sender {
+  
+}
+
 #pragma mark Initializers
 
 //- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons

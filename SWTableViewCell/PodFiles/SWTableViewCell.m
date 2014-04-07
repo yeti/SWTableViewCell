@@ -246,8 +246,6 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
     if (longPressGestureRecognizer.state == UIGestureRecognizerStateEnded)
     {
 
-      NSLog(@"Touched this bad boy");
-
         // Gesture recognizer ended without failing so we select the cell
         [self selectCell];
         
@@ -294,8 +292,8 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
     if (_cellState == kCellStateCenter)
     {
       
-      if ([self.containingView  respondsToSelector:@selector(flipIt)]) {
-        [self.containingView performSelector:@selector(flipIt)];
+      if ([self  respondsToSelector:@selector(flip:)]) {
+        [self performSelector:@selector(flip:)];
       }
 //      if ([self.containingTableView.delegate respondsToSelector:@selector(flipIt:)])
 //        {

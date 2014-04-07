@@ -247,7 +247,7 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
     {
 
         // Gesture recognizer ended without failing so we select the cell
-        //[self selectCell];
+        [self selectCell];
         
         // Set back to deselected
         [self setSelected:NO];
@@ -263,8 +263,6 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
         {
             [self highlightCell];
         }
-      [self selectCell];
-      
     }
 }
 

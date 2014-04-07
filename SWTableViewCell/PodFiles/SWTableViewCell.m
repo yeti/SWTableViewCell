@@ -632,12 +632,11 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 {
     [self setCellState];
   
-  if (_cellState == kCellStateLeft && [self.containingView respondsToSelector:@selector(upvote)]) {
-    [self.containingView performSelector:@selector(upvote)];
-  } else if (_cellState == kCellStateRight && [self.containingView respondsToSelector:@selector(downvote)]) {
-    [self.containingView performSelector:@selector(downvote)];
+  if (_cellState == kCellStateLeft) {
+    [self leftUtilityButtonHandler:0];
+  } else if (_cellState == kCellStateRight) {
+    [self rightUtilityButtonHandler:0];
   }
-  
     self.tapGestureRecognizer.enabled = YES;
 }
 

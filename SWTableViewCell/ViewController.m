@@ -65,7 +65,7 @@
   NSLog(@"Time to Flip");
 }
 
--(void)upvote {
+-(void)upvoteWithCell {
   NSLog(@"UPVOTE");
 }
 
@@ -241,6 +241,7 @@
     switch (index) {
         case 0:
             NSLog(@"left button 0 was pressed");
+        [cell hideUtilityButtonsAnimated:YES];
             break;
 //        case 1:
 //            NSLog(@"left button 1 was pressed");

@@ -43,11 +43,15 @@ typedef enum {
 
 /* Experiment */
 @property (nonatomic, weak) UIViewController *containingView;
+@property (nonatomic, weak) NSNumber *xDiff;
+@property (nonatomic, weak) NSNumber *yDiff;
+
+
 
 
 //- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons AndContainingView:(UIViewController*)containingView;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons AndContainingView:(UIViewController*)containingView AndXOffset:(NSNumber*)xOffset AndYOffset:(NSNumber*)yOffset;
 
 /* End Experiment */
 

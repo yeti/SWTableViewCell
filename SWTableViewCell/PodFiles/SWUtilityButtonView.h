@@ -21,7 +21,7 @@
 
 - (id)initWithFrame:(CGRect)frame utilityButtons:(NSArray *)utilityButtons parentCell:(SWTableViewCell *)parentCell utilityButtonSelector:(SEL)utilityButtonSelector;
 
-- (void)populateUtilityButtons;
+- (void)populateUtilityButtonsOnSide:(NSString*)side WithXDiff:(NSNumber*)diff AndYDiff:(NSNumber*)yDiff;
 - (CGFloat)utilityButtonsWidth;
 
 @end

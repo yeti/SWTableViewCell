@@ -61,22 +61,6 @@
     }
 }
 
-- (void)flipIt {
-  NSLog(@"Time to Flip");
-}
-
--(void)upvoteWithCell {
-  NSLog(@"UPVOTE");
-}
-
-- (void)downvote {
-  NSLog(@"DOWNVOTE");
-}
-
-- (void)undovote {
-  NSLog(@"UndoVote");
-}
-
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -147,7 +131,7 @@
             weakCell.containingTableView = tableView;
         } force:NO];
         
-        [cell setCellHeight:cell.frame.size.height];
+        [cell setXDiff:[NSNumber numberWithInt:5]];
 
         cell.label.text = [NSString stringWithFormat:@"Section: %d, Seat: %d", indexPath.section, indexPath.row];
         
@@ -167,7 +151,9 @@
                                       containingTableView:_tableView // Used for row height and selection
                                        leftUtilityButtons:[self leftButtons]
                                       rightUtilityButtons:[self rightButtons]
-                                      AndContainingView:self];
+                                      AndContainingView:self
+                                               AndXOffset:[NSNumber numberWithFloat:5.0]
+                    AndYOffset:[NSNumber numberWithFloat:20.0]];
             cell.delegate = self;
         }
         
@@ -176,7 +162,6 @@
         cell.textLabel.backgroundColor = [UIColor whiteColor];
         cell.detailTextLabel.backgroundColor = [UIColor whiteColor];
         cell.detailTextLabel.text = @"Some detail text";
-
         return cell;
     }
     

@@ -59,11 +59,13 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 
 /* Experiment */
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons AndContainingView:(UIViewController*)containingView
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons AndContainingView:(UIViewController*)containingView AndXOffset:(NSNumber*)xOffset AndYOffset:(NSNumber*)yOffset
 {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self)
   {
+    self.xDiff = xOffset;
+    self.yDiff = yOffset;
     self.height = containingTableView.rowHeight;
     [self initializer];
     self.containingTableView = containingTableView;
@@ -213,7 +215,9 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
     [self.cellScrollView insertSubview:scrollViewButtonViewLeft belowSubview:self.scrollViewContentView];
 
     [departingLeftButtons removeFromSuperview];
-    [scrollViewButtonViewLeft populateUtilityButtons];
+  
+    /* Need to send something that says we're on the left */
+    [scrollViewButtonViewLeft populateUtilityButtonsOnSide:@"left" WithXDiff:_xDiff AndYDiff:_yDiff];
     
     [self setNeedsLayout];
 }
@@ -232,7 +236,9 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
     [self.cellScrollView insertSubview:scrollViewButtonViewRight belowSubview:self.scrollViewContentView];
     
     [departingLeftButtons removeFromSuperview];
-    [scrollViewButtonViewRight populateUtilityButtons];
+  
+    /* Need to send something that says we're on the right */
+    [scrollViewButtonViewRight populateUtilityButtonsOnSide:@"right" WithXDiff:_xDiff AndYDiff:_yDiff];
     
     [self setNeedsLayout];
 }

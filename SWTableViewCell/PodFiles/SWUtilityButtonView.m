@@ -68,32 +68,62 @@
     return (_utilityButtons.count * _utilityButtonWidth);
 }
 
-- (void)populateUtilityButtons
-{
+- (void)populateUtilityButtonsOnSide:(NSString*)side WithXDiff:(NSNumber*)diff AndYDiff:(NSNumber *)yDiff  {
+  
+  if ([side isEqualToString:@"left"]) {
+    
     NSUInteger utilityButtonsCounter = 0;
-    for (UIButton *utilityButton in _utilityButtons)
-    {
-        CGFloat utilityButtonXCord = 0;
-        if (utilityButtonsCounter >= 1) utilityButtonXCord = _utilityButtonWidth * utilityButtonsCounter;
-        [utilityButton setFrame:CGRectMake(utilityButtonXCord, 0, _utilityButtonWidth, CGRectGetHeight(self.bounds))];
-        [utilityButton setTag:utilityButtonsCounter];
-        SWUtilityButtonTapGestureRecognizer *utilityButtonTapGestureRecognizer = [[SWUtilityButtonTapGestureRecognizer alloc] initWithTarget:_parentCell
-                                                                                                                                      action:_utilityButtonSelector];
-        utilityButtonTapGestureRecognizer.buttonIndex = utilityButtonsCounter;
-        [utilityButton addGestureRecognizer:utilityButtonTapGestureRecognizer];
-        [self addSubview: utilityButton];
-        utilityButtonsCounter++;
+    for (UIButton *utilityButton in _utilityButtons) {
+      CGFloat utilityButtonXCord = [diff floatValue];
+      
+      //NSLog(@"%f", CGRectGetHeight(self.bounds) - 10.0);
+      
+      [utilityButton setFrame:CGRectMake(utilityButtonXCord, [yDiff floatValue], _utilityButtonWidth, CGRectGetHeight(self.bounds) - ([yDiff floatValue]*2.0))];
+      
+      [utilityButton setTag:utilityButtonsCounter];
+      SWUtilityButtonTapGestureRecognizer *utilityButtonTapGestureRecognizer = [[SWUtilityButtonTapGestureRecognizer alloc] initWithTarget:_parentCell
+                                                                                                                                    action:_utilityButtonSelector];
+      utilityButtonTapGestureRecognizer.buttonIndex = utilityButtonsCounter;
+      [utilityButton addGestureRecognizer:utilityButtonTapGestureRecognizer];
+      [self addSubview: utilityButton];
+      utilityButtonsCounter++;
     }
+    
+  } else {
+    
+    NSUInteger utilityButtonsCounter = 0;
+    for (UIButton *utilityButton in _utilityButtons) {
+      
+      CGFloat utilityButtonXCord = 0;
+      
+      if (utilityButtonsCounter >= 1) {
+        utilityButtonXCord = _utilityButtonWidth * utilityButtonsCounter;
+      }
+      [utilityButton setFrame:CGRectMake(utilityButtonXCord, [yDiff floatValue], _utilityButtonWidth - [diff floatValue], CGRectGetHeight(self.bounds) - ([yDiff floatValue]*2.0))];
+      
+      [utilityButton setTag:utilityButtonsCounter];
+      SWUtilityButtonTapGestureRecognizer *utilityButtonTapGestureRecognizer = [[SWUtilityButtonTapGestureRecognizer alloc] initWithTarget:_parentCell
+                                                                                                                                    action:_utilityButtonSelector];
+      utilityButtonTapGestureRecognizer.buttonIndex = utilityButtonsCounter;
+      [utilityButton addGestureRecognizer:utilityButtonTapGestureRecognizer];
+      [self addSubview: utilityButton];
+      utilityButtonsCounter++;
+    }
+    
+  }
+  
 }
 
 - (void)setHeight:(CGFloat)height
 {
     for (NSUInteger utilityButtonsCounter = 0; utilityButtonsCounter < _utilityButtons.count; utilityButtonsCounter++)
     {
-        UIButton *utilityButton = (UIButton *)_utilityButtons[utilityButtonsCounter];
-        CGFloat utilityButtonXCord = 0;
-        if (utilityButtonsCounter >= 1) utilityButtonXCord = _utilityButtonWidth * utilityButtonsCounter;
-        [utilityButton setFrame:CGRectMake(utilityButtonXCord, 0, _utilityButtonWidth, height)];
+      UIButton *utilityButton = (UIButton *)_utilityButtons[utilityButtonsCounter];
+      CGFloat utilityButtonXCord = 0;
+      if (utilityButtonsCounter >= 1) {
+        utilityButtonXCord = _utilityButtonWidth * utilityButtonsCounter;
+      }
+      [utilityButton setFrame:CGRectMake(utilityButtonXCord, 0, _utilityButtonWidth, height)];
     }
 }
 

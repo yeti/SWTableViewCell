@@ -49,7 +49,7 @@
     
     _testArray = [[NSMutableArray alloc] init];
     
-    self.useCustomCells = NO;
+    self.useCustomCells = YES;
     
     for (int i = 0; i < _sections.count; ++i) {
         [_testArray addObject:[NSMutableArray array]];
@@ -131,7 +131,10 @@
             weakCell.containingTableView = tableView;
         } force:NO];
         
-        [cell setXDiff:[NSNumber numberWithInt:5]];
+        //[cell setXDiff:[NSNumber numberWithInt:5]];
+      
+      [cell setCellHeight:cell.frame.size.height WithXDiff:[NSNumber numberWithFloat:5.0] andYDiff:[NSNumber numberWithFloat:10.0]];
+      
 
         cell.label.text = [NSString stringWithFormat:@"Section: %d, Seat: %d", indexPath.section, indexPath.row];
         

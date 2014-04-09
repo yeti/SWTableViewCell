@@ -356,13 +356,17 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 
 #pragma mark -  Height methods
 
-- (void)setCellHeight:(CGFloat)height
+- (void)setCellHeight:(CGFloat)height WithXDiff:(NSNumber *)xDiff andYDiff:(NSNumber *)yDiff
 {
     _height = height;
     
     // update the utility button height
-    [self.scrollViewButtonViewLeft setHeight:height];
-    [self.scrollViewButtonViewRight setHeight:height];
+  
+  [self.scrollViewButtonViewLeft setHeight:height withXDiff:xDiff YDiff:yDiff ForSide:@"left"];
+  [self.scrollViewButtonViewRight setHeight:height withXDiff:xDiff YDiff:yDiff ForSide:@"right"];
+
+    //[self.scrollViewButtonViewLeft setHeight:height];
+    //[self.scrollViewButtonViewRight setHeight:height];
     
     [self layoutSubviews];
 }

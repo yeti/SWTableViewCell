@@ -24,4 +24,7 @@
 - (void)populateUtilityButtonsOnSide:(NSString*)side WithXDiff:(NSNumber*)diff AndYDiff:(NSNumber*)yDiff;
 - (CGFloat)utilityButtonsWidth;
 
+- (void)setHeight:(CGFloat)height withXDiff:(NSNumber*)xDiff YDiff:(NSNumber*)yDiff ForSide:(NSString*)side;
+
+
 @end

@@ -56,6 +56,9 @@ typedef enum {
 /* End Experiment */
 
 - (void)setCellHeight:(CGFloat)height;
+
+- (void) setCellHeight:(CGFloat)height WithXDiff:(NSNumber*)xDiff andYDiff:(NSNumber*)yDiff;
+
 - (void)setBackgroundColor:(UIColor *)backgroundColor;
 - (void)hideUtilityButtonsAnimated:(BOOL)animated;
 - (void)setAppearanceWithBlock:(void (^) ())appearanceBlock force:(BOOL)force;

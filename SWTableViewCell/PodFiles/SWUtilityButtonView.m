@@ -114,17 +114,42 @@
   
 }
 
-- (void)setHeight:(CGFloat)height
+//- (void)setHeight:(CGFloat)height
+//{
+//    for (NSUInteger utilityButtonsCounter = 0; utilityButtonsCounter < _utilityButtons.count; utilityButtonsCounter++) {
+//      
+//      UIButton *utilityButton = (UIButton *)_utilityButtons[utilityButtonsCounter];
+//      CGFloat utilityButtonXCord = 0;
+//      if (utilityButtonsCounter >= 1) {
+//        utilityButtonXCord = _utilityButtonWidth * utilityButtonsCounter;
+//      }
+//      [utilityButton setFrame:CGRectMake(utilityButtonXCord, 0, _utilityButtonWidth, height)];
+//    }
+//}
+
+- (void)setHeight:(CGFloat)height withXDiff:(NSNumber*)xDiff YDiff:(NSNumber*)yDiff ForSide:(NSString*)side
 {
-    for (NSUInteger utilityButtonsCounter = 0; utilityButtonsCounter < _utilityButtons.count; utilityButtonsCounter++)
-    {
+  if ([side isEqualToString:@"left"]) {
+    for (NSUInteger utilityButtonsCounter = 0; utilityButtonsCounter < _utilityButtons.count; utilityButtonsCounter++) {
+      
       UIButton *utilityButton = (UIButton *)_utilityButtons[utilityButtonsCounter];
       CGFloat utilityButtonXCord = 0;
       if (utilityButtonsCounter >= 1) {
         utilityButtonXCord = _utilityButtonWidth * utilityButtonsCounter;
       }
-      [utilityButton setFrame:CGRectMake(utilityButtonXCord, 0, _utilityButtonWidth, height)];
+      [utilityButton setFrame:CGRectMake(utilityButtonXCord + [xDiff floatValue], [yDiff floatValue], _utilityButtonWidth, height - ([yDiff floatValue]*2.0f))];
     }
+  } else {
+    for (NSUInteger utilityButtonsCounter = 0; utilityButtonsCounter < _utilityButtons.count; utilityButtonsCounter++) {
+      
+      UIButton *utilityButton = (UIButton *)_utilityButtons[utilityButtonsCounter];
+      CGFloat utilityButtonXCord = 0;
+      if (utilityButtonsCounter >= 1) {
+        utilityButtonXCord = _utilityButtonWidth * utilityButtonsCounter;
+      }
+      [utilityButton setFrame:CGRectMake(utilityButtonXCord, [yDiff floatValue], _utilityButtonWidth -  + [xDiff floatValue], height - ([yDiff floatValue]*2.0f))];
+    }
+  }
 }
 
 @end

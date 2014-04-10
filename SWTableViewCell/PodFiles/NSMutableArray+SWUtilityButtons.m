@@ -16,6 +16,7 @@
     button.backgroundColor = color;
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:30.0];
     [self addObject:button];
 }
 
@@ -24,6 +25,8 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = color;
     [button setImage:icon forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:30.0];
+
     [self addObject:button];
 }
 
@@ -33,6 +36,8 @@
     [button setImage:normalIcon forState:UIControlStateNormal];
     [button setImage:selectedIcon forState:UIControlStateHighlighted];
     [button setImage:selectedIcon forState:UIControlStateSelected];
+    button.titleLabel.font = [UIFont systemFontOfSize:30.0];
+
     [self addObject:button];
 }
 

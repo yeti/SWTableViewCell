@@ -527,8 +527,8 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
             }
             else
             {
-                CGFloat rightThreshold = [self utilityButtonsPadding] - ([self rightUtilityButtonsWidth] / 2);
-                CGFloat leftThreshold = [self leftUtilityButtonsWidth] / 2;
+                CGFloat rightThreshold = [self utilityButtonsPadding] - ([self rightUtilityButtonsWidth] / 4);
+                CGFloat leftThreshold = [self leftUtilityButtonsWidth] / 4;
                 if (targetContentOffset->x > rightThreshold)
                     [self scrollToRight:targetContentOffset];
                 else if (targetContentOffset->x < leftThreshold)
@@ -548,9 +548,9 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
             }
             else
             {
-                if (targetContentOffset->x >= ([self utilityButtonsPadding] - [self rightUtilityButtonsWidth] / 2))
+                if (targetContentOffset->x >= ([self utilityButtonsPadding] - [self rightUtilityButtonsWidth] / 4))
                     [self scrollToRight:targetContentOffset];
-                else if (targetContentOffset->x > [self leftUtilityButtonsWidth] / 2)
+                else if (targetContentOffset->x > [self leftUtilityButtonsWidth] / 4)
                     [self scrollToCenter:targetContentOffset];
                 else
                     [self scrollToLeft:targetContentOffset];
@@ -567,9 +567,9 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
             }
             else
             {
-                if (targetContentOffset->x <= [self leftUtilityButtonsWidth] / 2)
+                if (targetContentOffset->x <= [self leftUtilityButtonsWidth] / 4)
                     [self scrollToLeft:targetContentOffset];
-                else if (targetContentOffset->x < ([self utilityButtonsPadding] - [self rightUtilityButtonsWidth] / 2))
+                else if (targetContentOffset->x < ([self utilityButtonsPadding] - [self rightUtilityButtonsWidth] / 4))
                     [self scrollToCenter:targetContentOffset];
                 else
                     [self scrollToRight:targetContentOffset];

@@ -519,11 +519,11 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
         case kCellStateCenter:
             if (velocity.x >= 0.5f)
             {
-                [self scrollToRight:targetContentOffset];
+                [self scrollToCenter:targetContentOffset];
             }
             else if (velocity.x <= -0.5f)
             {
-                [self scrollToLeft:targetContentOffset];
+                [self scrollToCenter:targetContentOffset];
             }
             else
             {
